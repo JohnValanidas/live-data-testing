@@ -10,6 +10,6 @@ Steps:
 
 
 TODO:
-[] setup load script to put a "production load" on the database
-[] setup a better client script
-[] capture better metrics
+ - [ ] setup load script to put a "production load" on the database
+ - [ ] setup a better client script
+ - [ ] capture better metrics
