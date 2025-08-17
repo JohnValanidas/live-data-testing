@@ -1,0 +1,24 @@
+version: '3.9'
+volumes:
+  psql:
+services:
+  psql:
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: live-data
+    volumes:
+      - psql:/var/lib/postgresql/data # save data between restarts
+    ports:
+      - 5555:5432 # binds port 5555 on your computer to the postgres port!
+  
+  # OpenTelemetry collector with Grafana, Loki, Tempo, and Mimir
+  otel-lgtm:
+    image: grafana/otel-lgtm:latest
+    ports:
+      - "3000:3000"   # Grafana UI
+      - "4317:4317"   # OTLP gRPC receiver
+      - "4318:4318"   # OTLP HTTP receiver
+    environment:
+      - OTEL_METRIC_EXPORT_INTERVAL=5000
