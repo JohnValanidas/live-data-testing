@@ -62,7 +62,7 @@ async def websocket_endpoint(websocket: WebSocket):
             
             # Echo the message back to the sender
             response = f"Echo from server: {data}"
-            await websocket_manager.send_personal_message(response, connection_id)
+            await websocket_manager.send_direct_message(response, connection_id)
             
     except WebSocketDisconnect:
         websocket_manager.disconnect(connection_id)

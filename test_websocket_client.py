@@ -5,6 +5,7 @@ import argparse
 from typing import List
 
 # TODO: consider instrumenting this to track client connections and messages.
+# quickly generated with AI
 class WebSocketTestClient:
     def __init__(self, uri: str = "ws://localhost:8000/ws"):
         self.uri = uri

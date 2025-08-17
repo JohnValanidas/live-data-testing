@@ -87,8 +87,8 @@ class WebSocketManager:
                            f"Duration: {duration:.2f}s, Messages: {connection_info['message_count']}. "
                            f"Remaining connections: {len(self.active_connections)}")
     
-    async def send_personal_message(self, message: str, connection_id: str):
-        with tracer.start_as_current_span("websocket_send_personal_message") as span:
+    async def send_direct_message(self, message: str, connection_id: str):
+        with tracer.start_as_current_span("websocket_send_direct_message") as span:
             if connection_id in self.active_connections:
                 websocket = self.active_connections[connection_id]["websocket"]
                 try:
@@ -96,7 +96,7 @@ class WebSocketManager:
                     self.active_connections[connection_id]["message_count"] += 1
                     
                     # Record metrics
-                    message_counter.add(1, {"message_type": "personal"})
+                    message_counter.add(1, {"message_type": "direct"})
                     
                     # Add span attributes
                     span.set_attribute("connection_id", connection_id)

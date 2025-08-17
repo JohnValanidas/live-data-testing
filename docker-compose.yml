@@ -11,9 +11,8 @@ services:
     volumes:
       - psql:/var/lib/postgresql/data # save data between restarts
     ports:
-      - 5555:5432 # binds port 5555 on your computer to the postgres port!
+      - 5555:5432
   
-  # OpenTelemetry collector with Grafana, Loki, Tempo, and Mimir
   otel-lgtm:
     image: grafana/otel-lgtm:latest
     ports:
